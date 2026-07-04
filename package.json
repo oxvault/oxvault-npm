@@ -1,20 +1,23 @@
 {
   "name": "oxvault",
   "version": "0.3.0",
-  "description": "MCP security scanner — detect vulnerabilities in AI tool integrations before they run",
+  "description": "AI supply-chain security scanner — detect vulnerabilities in MCP servers and ML models before they run",
   "bin": {
     "oxvault": "./bin/run.js"
   },
   "scripts": {
     "postinstall": "node ./scripts/install.js"
   },
-  "keywords": ["mcp", "security", "scanner", "ai", "vulnerability"],
+  "keywords": ["mcp", "security", "scanner", "ai", "vulnerability", "model-scanning", "supply-chain"],
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oxvault/scanner"
+    "url": "https://github.com/oxvault/oxvault-npm"
   },
-  "homepage": "https://github.com/oxvault/scanner",
+  "homepage": "https://oxvault.dev",
+  "bugs": {
+    "url": "https://github.com/oxvault/oxvault-npm/issues"
+  },
   "engines": {
     "node": ">=16"
   }

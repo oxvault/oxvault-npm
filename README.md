@@ -1,10 +1,22 @@
 # oxvault
 
-npm wrapper for the [Oxvault MCP security scanner](https://github.com/oxvault/scanner).
+npm wrapper for the [OxVault scanner](https://github.com/oxvault/scanner) — AI supply-chain security for the agentic era.
 
-Oxvault scans MCP (Model Context Protocol) servers for security vulnerabilities before they run inside your AI agent. 66% of MCP servers have security issues — prompt injection, credential exposure, tool poisoning, and more.
+OxVault scans MCP (Model Context Protocol) servers and ML models for security issues before they run inside your AI agent: prompt injection, credential exposure, tool poisoning, unsafe model formats, and more. It ships 150+ detection rules, and v0.4 added model scanning.
 
-## Install
+## Publishing status
+
+This package is **not yet published to npm**. The publish workflow is in place (`.github/workflows/publish.yml`, tag-triggered with provenance) and runs on the first tagged release.
+
+Until it's published, install the scanner directly:
+
+```sh
+curl -fsSL https://oxvault.dev/install.sh | sh
+```
+
+Once published, the npm commands below will work.
+
+## Install (once published)
 
 Run without installing (always fetches latest):
 
@@ -44,7 +56,7 @@ oxvault pin npx -y @company/server
 oxvault check npx -y @company/server
 ```
 
-See the [full documentation](https://github.com/oxvault/scanner) for all flags and output formats.
+See the [documentation](https://oxvault.dev/docs) for all flags and output formats.
 
 ## Supported Platforms
 
@@ -56,7 +68,7 @@ See the [full documentation](https://github.com/oxvault/scanner) for all flags a
 
 ## How It Works
 
-On `npm install`, this package downloads the correct pre-built binary from the [GitHub releases page](https://github.com/oxvault/scanner/releases) for your OS and architecture. The `oxvault` command then proxies directly to that binary — no Node.js overhead at runtime.
+On `npm install`, this package's postinstall script (`scripts/install.js`) resolves the latest scanner release from the GitHub Releases API (falling back to the package version), then downloads the matching `scanner_<version>_<os>_<arch>` archive from the [scanner releases page](https://github.com/oxvault/scanner/releases) and extracts the `oxvault` binary into `bin/`. The `oxvault` command (`bin/run.js`) then proxies directly to that binary — no Node.js overhead at runtime. If the download fails, install still succeeds and prints manual-install instructions.
 
 ## License
 
